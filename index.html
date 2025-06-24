@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Kaleem Aslam | WordPress Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Global Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #F5F2F1;
+            color: #341924;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #953F3C;
+        }
+
+        section {
+            padding: 5rem 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #953F3C;
+        }
+
+        .btn {
+            background: #953F3C;
+            color: #F5F2F1;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #C27F50;
+            transform: translateY(-3px);
+        }
+
+        /* ===== Header & Navigation ===== */
+        header {
+            background: #341924;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: #F5F2F1;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: #F5F2F1;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #C27F50;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #F5F2F1;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #C27F50;
+            animation: fadeInDown 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero .btn {
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        /* ===== About Section ===== */
+        .about {
+            background-color: #FFF;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bio, .education {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .bio p {
+            margin-bottom: 1.5rem;
+        }
+
+        .info p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .education h3 {
+            color: #953F3C;
+            margin-bottom: 1rem;
+        }
+
+        .education ul {
+            list-style-position: inside;
+        }
+
+        .education li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== Skills Section ===== */
+        .skills {
+            background-color: #F5F2F1;
+        }
+
+        .skill-bars {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .skill {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-container {
+            background-color: #A79DA0;
+            border-radius: 5px;
+            height: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #953F3C;
+            border-radius: 5px;
+            transition: width 1.5s ease;
+        }
+
+        /* ===== Projects Section ===== */
+        .projects {
+            background-color: #FFF;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #FFF;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            border: 1px solid #F5F2F1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            color: #953F3C;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            color: #A79DA0;
+            margin-bottom: 1rem;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #C27F50;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .project-card a:hover {
+            color: #953F3C;
+        }
+
+        /* ===== Testimonials ===== */
+        .testimonials {
+            background-color: #F5F2F1;
+        }
+
+        .testimonial-card {
+            background: #FFF;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card h4 {
+            color: #953F3C;
+        }
+
+        /* ===== Contact Section ===== */
+        .contact {
+            background-color: #FFF;
+        }
+
+        .contact-info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: #953F3C;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #C27F50;
+            transform: translateY(-3px);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #341924;
+            color: #F5F2F1;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Muhammad Kaleem Aslam</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Muhammad Kaleem Aslam</h1>
+            <h2>WordPress Developer & Frontend Specialist</h2>
+            <p>Expert in WordPress, WooCommerce, and custom web solutions with 5+ years of experience.</p>
+            <div>
+                <a href="#contact" class="btn">Hire Me</a>
+                <a href="#" class="btn" style="margin-left: 1rem;">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="bio">
+                <p>I am an expert WordPress developer specializing in HTML, CSS & JavaScript. I have successfully delivered 50+ projects including WooCommerce stores, blogs, service-based websites, APK sites, and local business websites.</p>
+                <p>My approach focuses on clean code, responsive design, and SEO optimization to ensure maximum performance and user satisfaction.</p>
+                <div class="info">
+                    <p><i class="fas fa-envelope"></i> iamkaleemaslam@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +92 307 6502311</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Muzaffargarh, Pakistan</p>
+                </div>
+            </div>
+            <div class="education">
+                <h3>Education & Certifications</h3>
+                <ul>
+                    <li>BSc Electrical Power Engineering (2015)</li>
+                    <li>Google UX Design Certification</li>
+                    <li>Advanced WordPress Development</li>
+                    <li>Frontend Web Development Nanodegree</li>
+                </ul>
+                <h3 style="margin-top: 1.5rem;">Hobbies</h3>
+                <p><i class="fas fa-music"></i> Singing & Playing Guitar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2>My Skills</h2>
+        <div class="skill-bars">
+            <div class="skill">
+                <p>WordPress <span>90%</span></p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>HTML <span>85%</span></p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>CSS <span>80%</span></p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>JavaScript <span>70%</span></p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>WooCommerce <span>85%</span></p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p>PHP <span>75%</span></p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 75%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Al Hussna</h3>
+                <p>WooCommerce Store with custom product pages</p>
+                <a href="https://alhussna.com/" target="_blank">Live Demo →</a>
+            </div>
+            <div class="project-card">
+                <h3>Express Dubai</h3>
+                <p>Service booking website with payment gateway</p>
+                <a href="https://expressdubai.ae/" target="_blank">Live Demo →</a>
+            </div>
+            <div class="project-card">
+                <h3>Laylow</h3>
+                <p>Local business website with booking system</p>
+                <a href="https://laylow.pk/" target="_blank">Live Demo →</a>
+            </div>
+            <div class="project-card">
+                <h3>Al Quran Pro</h3>
+                <p>APK download portal with user accounts</p>
+                <a href="https://alquranpro.com/" target="_blank">Live Demo →</a>
+            </div>
+            <div class="project-card">
+                <h3>Basketball Gem</h3>
+                <p>Sports blog with custom WordPress theme</p>
+                <a href="https://basketballgem.com/" target="_blank">Live Demo →</a>
+            </div>
+            <div class="project-card">
+                <h3>More Projects</h3>
+                <p>View additional work on GitHub</p>
+                <a href="https://github.com/iamkaleemaslam/" target="_blank">GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2>Client Testimonials</h2>
+        <div class="testimonial-card">
+            <p>"Kaleem transformed our e-commerce store with his WordPress expertise. The site loads faster, converts better, and requires minimal maintenance. His attention to detail is exceptional!"</p>
+            <h4>- Al Hussna Store Owner</h4>
+        </div>
+        <div class="testimonial-card" style="margin-top: 2rem;">
+            <p>"We hired Kaleem for a complex service booking website. He delivered ahead of schedule and implemented features we didn't even think were possible. Will definitely work with him again."</p>
+            <h4>- Express Dubai Manager</h4>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> iamkaleemaslam@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +92 307 6502311</p>
+            <p><i class="fas fa-map-marker-alt"></i> Muzaffargarh, Pakistan</p>
+            <p><i class="fas fa-clock"></i> Available for freelance work</p>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/iamkaleemaslam/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/iamkaleemaslam/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.facebook.com/iamkaleemaslam/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/923076502311" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            
+            <a href="#contact" class="btn" style="margin-top: 2rem;">Start a Project</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Muhammad Kaleem Aslam. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Simple animation for progress bars when scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillsSection = document.querySelector('.skills');
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            const animateProgressBars = () => {
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateProgressBars();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(skillsSection);
+        });
+    </script>
+</body>
+</html>
