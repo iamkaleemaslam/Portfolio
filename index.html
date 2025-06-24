@@ -55,9 +55,7 @@
         header {
             background: #341924;
             padding: 1rem 2rem;
-            position: fixed;
             width: 100%;
-            z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
@@ -67,30 +65,41 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
 
         .logo {
             color: #F5F2F1;
             font-weight: 700;
             font-size: 1.5rem;
+            z-index: 1001;
         }
 
-        nav ul {
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            color: #F5F2F1;
+            font-size: 1.5rem;
+            z-index: 1001;
+        }
+
+        .nav-links {
             display: flex;
             list-style: none;
+            transition: all 0.3s ease;
         }
 
-        nav ul li {
+        .nav-links li {
             margin-left: 2rem;
         }
 
-        nav ul li a {
+        .nav-links a {
             color: #F5F2F1;
             transition: 0.3s;
             font-weight: 500;
         }
 
-        nav ul li a:hover {
+        .nav-links a:hover {
             color: #C27F50;
         }
 
@@ -366,21 +375,32 @@
             }
         }
 
-        /* ===== Responsive Design ===== */
+        /* ===== Mobile Menu ===== */
         @media (max-width: 768px) {
-            nav {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: #341924;
                 flex-direction: column;
-                gap: 1rem;
+                padding: 5rem 2rem;
+                transition: all 0.5s ease;
+                z-index: 1000;
             }
 
-            nav ul {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
+            .nav-links.active {
+                left: 0;
+                box-shadow: 5px 0 15px rgba(0,0,0,0.2);
             }
 
-            nav ul li {
-                margin: 0 1rem 0.5rem;
+            .nav-links li {
+                margin: 1rem 0;
             }
 
             .hero-content h1 {
@@ -423,7 +443,10 @@
     <header>
         <nav>
             <div class="logo">Muhammad Kaleem Aslam</div>
-            <ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -593,7 +616,26 @@
     </footer>
 
     <script>
-        // Simple animation for progress bars when scrolling
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Progress bar animation
         document.addEventListener('DOMContentLoaded', function() {
             const skillsSection = document.querySelector('.skills');
             const progressBars = document.querySelectorAll('.progress-bar');
