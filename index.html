@@ -106,10 +106,23 @@
             text-align: center;
             color: #F5F2F1;
             padding: 0 2rem;
+            position: relative;
         }
 
         .hero-content {
             max-width: 800px;
+            z-index: 2;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #953F3C;
+            margin: 0 auto 1.5rem;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .hero-content h1 {
@@ -362,6 +375,12 @@
 
             nav ul {
                 margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 1rem 0.5rem;
             }
 
             .hero-content h1 {
@@ -372,8 +391,29 @@
                 font-size: 1.2rem;
             }
 
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
             section {
                 padding: 3rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-content .btn + .btn {
+                margin-left: 0;
             }
         }
     </style>
@@ -396,6 +436,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
+            <img src="https://raw.githubusercontent.com/iamkaleemaslam/Portfolio/refs/heads/main/Kaleem.jpg" alt="Muhammad Kaleem Aslam" class="profile-photo">
             <h1>Muhammad Kaleem Aslam</h1>
             <h2>WordPress Developer & Frontend Specialist</h2>
             <p>Expert in WordPress, WooCommerce, and custom web solutions with 5+ years of experience.</p>
